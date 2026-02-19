@@ -27,3 +27,4 @@ refreshTokenSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
 refreshTokenSchema.index({ userId: 1 });
 
 const RefreshToken = model('RefreshToken', refreshTokenSchema);
+export default RefreshToken;
