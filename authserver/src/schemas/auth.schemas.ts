@@ -8,8 +8,6 @@ const basePasswordSchema = z
   .min(12, { error: 'Password must be at least 12 characters.' })
   .max(512, { error: 'The length of this Password is excessive.' });
 
-const serviceSchema = z.string().max(128).optional();
-
 export const registerSchema = z
   .object(
     {
@@ -33,4 +31,8 @@ export const registerSchema = z
 export const loginSchema = z.object({
   email: emailSchema,
   password: basePasswordSchema
+});
+
+export const refreshTokenSchema = z.object({
+  refreshToken: z.string().min(1)
 });
