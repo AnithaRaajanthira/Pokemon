@@ -66,7 +66,7 @@ export const refresh: RequestHandler<{}, TokenResBody, RefreshTokenDTO> = async 
   const storedToken = await RefreshToken.findOne({ token: refreshToken }).lean();
   if (!storedToken) throw new Error('Please sign in again', { cause: { status: 403 } });
 
-  await RefreshToken.findByIdAndDelete(storedToken._id);
+  await RefreshToken.findByIdAndDelete(storedToken.userId);
 
   const user = await User.findById(storedToken._id).lean();
   if (!user) throw new Error('User account not found', { cause: { status: 403 } });
