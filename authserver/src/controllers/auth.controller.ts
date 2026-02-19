@@ -68,7 +68,7 @@ export const refresh: RequestHandler<{}, TokenResBody, RefreshTokenDTO> = async 
 
   await RefreshToken.findByIdAndDelete(storedToken._id);
 
-  const user = await User.findById(storedToken.userId).lean();
+  const user = await User.findById(storedToken._id).lean();
   if (!user) throw new Error('User account not found', { cause: { status: 403 } });
 
   // create new tokens with out util function
