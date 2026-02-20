@@ -3,6 +3,8 @@ import AppLayout from "./components/layout/AppLayout.tsx";
 import HomePage, { loader as HomePageLoader } from "./pages/HomePage.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import RosterPage, { rosterLoader } from "./pages/RosterPage";
+import LoginPage, { action as LoginAction } from "./pages/LoginPage.tsx";
+import RegisterPage, { action as registerAction } from "./pages/RegisterPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,17 +21,20 @@ const router = createBrowserRouter([
         Component: RosterPage,
         loader: rosterLoader,
       },
+      {
+        path: "/Login",
+        element: <LoginPage />,
+        action: LoginAction,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+        action: registerAction,
+      },
+
       // {
-      //   path: "/Login",
-      //   element: <LogIn />,
-      // },
-      // {
-      //   path: "/register",
-      //   element: <Register />,
-      // },
-      // {
-      //   path: "/roster",
-      //   element: <RosterPage />,
+      //   path: "/battle",
+      //   element: <BattlePage />,
       // },
       // {
       //   path: "/details",
