@@ -17,7 +17,7 @@ const RosterPokemonSchema = z.object({
 const RosterSchema = z
   .array(RosterPokemonSchema)
   .catch([])
-  .transform((arr) => arr.slice(0, 6)); // hard-limit 6 even if storage is corrupted
+  .transform((arr) => arr.slice(0, 6));
 
 const KEY = "pokemon_roster";
 const MAX = 6;
@@ -48,7 +48,7 @@ export function addToRoster(
   const roster = readRoster();
 
   if (roster.some((p) => p.id === pokemon.id)) {
-    return { ok: true, roster }; // already in roster -> no-op
+    return { ok: true, roster };
   }
 
   if (roster.length >= MAX) {
