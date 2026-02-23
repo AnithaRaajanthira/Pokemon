@@ -7,6 +7,7 @@ import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage.tsx";
 import LoginPage, { action as LoginAction } from "./pages/LoginPage.tsx";
 import RegisterPage, { action as registerAction } from "./pages/RegisterPage.tsx";
 import BattlePage from "./pages/BattlePage.tsx";
+import LeaderboardPage from "./pages/LeaderboardPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -42,20 +43,10 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
         action: registerAction,
       },
-
-      // {
-      //   path: "/Login",
-      //   element: <LogIn />,
-      // },
-      // {
-      //   path: "/register",
-      //   element: <Register />,
-      // },
-
-      // {
-      //   path: "/leaderboard",
-      //   element: <LeaderboardPage />,
-      // },
+      {
+        path: "/leaderboard",
+        element: <LeaderboardPage />,
+      },
     ],
   },
 ]);
