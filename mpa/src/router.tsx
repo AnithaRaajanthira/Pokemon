@@ -33,8 +33,12 @@ const router = createBrowserRouter([
       },
 
       // {
-      //   path: "/battle",
-      //   element: <BattlePage />,
+      //   path: "/Login",
+      //   element: <LogIn />,
+      // },
+      // {
+      //   path: "/register",
+      //   element: <Register />,
       // },
       // {
       //   path: "/details",
