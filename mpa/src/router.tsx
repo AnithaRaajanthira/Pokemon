@@ -28,10 +28,6 @@ const router = createBrowserRouter([
       //   element: <Register />,
       // },
       // {
-      //   path: "/roster",
-      //   element: <RosterPage />,
-      // },
-      // {
       //   path: "/details",
       //   element: <DetailsPage />,
       // },
