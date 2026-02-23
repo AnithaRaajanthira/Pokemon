@@ -1,11 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
 
-type PokemonsType = {
-  name: string;
-  url: string;
-};
-
 type PokCardsProps = {
   name: string;
   imageUrl: string;

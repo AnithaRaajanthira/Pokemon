@@ -1,11 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 import { useState } from "react";
 import PokCards from "../components/ui/PokCards";
-import {
-  readRoster,
-  removeFromRoster,
-  type RosterPokemon,
-} from "../types/rosterStorage";
+import { readRoster, removeFromRoster, type RosterPokemon } from "../types/rosterStorage";
 
 export function rosterLoader() {
   return readRoster();

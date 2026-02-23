@@ -1,47 +1,46 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLoaderData, Link } from "react-router";
-import PokCards from "../components/ui/PokCards";
-import { addToRoster, readRoster, removeFromRoster, type RosterPokemon } from "../types/rosterStorage";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import type { Pokemon } from "../types/details";
 
-type detailsCardsProps = {
-  name: string;
-  imageUrl: string;
-  rosterBtnLabel?: string;
-  rosterBtnDisabled?: boolean;
-  rosterBtnOnClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
-
-type pokemonDetailsResponse = {
-  name: string;
-  weight: number;
-  height: number;
-  types: Object;
-};
-
-export async function loader(id) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  if (!res.ok) throw new Error("Cannot fetch data:");
-  const data = await res.json();
-  return data.results as pokemonDetailsResponse[];
-}
-
-export default function DetailsPage({
-  name,
-  imageUrl,
-  rosterBtnLabel,
-  rosterBtnDisabled,
-  rosterBtnOnClick,
-}: detailsCardsProps) {
-  const [pokemon, setPokemon] = useState<pokemonDetailsResponse[]>([]);
+export default function DetailsPage() {
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
   useEffect(() => {
-    setLoading(true);
-    loader(1)
-      .then(setPokemon)
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    let cancelled = false;
+
+    async function fetchPokemon() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+
+        const data: Pokemon = await res.json();
+        if (!cancelled) setPokemon(data);
+      } catch (e) {
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : "Unknown error");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    fetchPokemon();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-600 p-4">Error: {error}</div>;
+  if (!pokemon) return <div>No Pokémon found.</div>;
 
   return (
     <div className="min-h-screen bg-cyan-100">
@@ -52,19 +51,19 @@ export default function DetailsPage({
         </Link>
       </div>
       <div className="flex flex-wrap justify-center items-center">
-        <div className="card bg-black shadow-sm w-140 p-5">
-          <div className="text-white text-center">name</div>
+        <div className="card bg-black shadow-sm p-5">
+          <div className="text-center text-3xl text-yellow-400">{pokemon.name}</div>
 
-          <figure className="px-10 pt-10">
-            <img src={imageUrl} alt={name} className="rounded-xl" />
+          <figure>
+            <img src={`${imageUrl}${pokemon.id}.png`} alt={pokemon.name} className="rounded-xl" />
           </figure>
-          <div className="text-white">Type:</div>
-        </div>
-        {/* 
 
-        <div className="card-body items-center text-center">
-          <h2 className="card-title text-white">{name}</h2>
-        </div> */}
+          <div className="text-white">
+            <p>Height: {pokemon.height}</p>
+            <p>Weight: {pokemon.weight}</p>
+            <p>Types: {pokemon.types.map((t) => t.type.name).join(", ")}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
