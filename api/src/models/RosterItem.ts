@@ -9,7 +9,7 @@ export type RosterItemDoc = {
 
 const RosterItemSchema = new Schema<RosterItemDoc>(
   {
-    userId: { type: String, required: true, index: true },
+    userId: { type: String, required: true, index: true, ref: "User" },
     pokemonId: { type: Number, required: true, index: true },
   },
   { timestamps: true },
