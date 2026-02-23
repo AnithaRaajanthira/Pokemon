@@ -1,4 +1,10 @@
 import React from "react";
+import { Link } from "react-router";
+
+type PokemonsType = {
+  name: string;
+  url: string;
+};
 
 type PokCardsProps = {
   name: string;
@@ -27,18 +33,13 @@ export default function PokCards({
 
       <div className="card-body items-center text-center">
         <h2 className="card-title text-white">{name}</h2>
-
         <div className="card-actions gap-2">
-          <button onClick={ViewDetailsBtn} className="btn btn-primary">
-            View Details
-          </button>
+          <Link to={`/details/${name}`}>
+            <button className="btn btn-primary">View Details</button>
+          </Link>
 
           {rosterBtnLabel && (
-            <button
-              onClick={rosterBtnOnClick}
-              disabled={rosterBtnDisabled}
-              className="btn btn-secondary"
-            >
+            <button onClick={rosterBtnOnClick} disabled={rosterBtnDisabled} className="btn btn-secondary">
               {rosterBtnLabel}
             </button>
           )}

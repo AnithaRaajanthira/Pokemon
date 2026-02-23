@@ -19,7 +19,10 @@ export default function Header(): JSX.Element {
           Homepage
         </Link>
         <div className="hidden md:flex gap-4">
-          <Link to="/leaderboard" className="btn btn-ghost text-2xl font-black text-amber-950 hover:scale-105 transition-transform">
+          <Link
+            to="/leaderboard"
+            className="btn btn-ghost text-2xl font-black text-amber-950 hover:scale-105 transition-transform"
+          >
             Leaderboard
           </Link>
         </div>
@@ -30,19 +33,25 @@ export default function Header(): JSX.Element {
       </div>
 
       <div className="navbar-end gap-2">
-        <Link to="/details" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
+        {/* <Link to="/details" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
           Details
-        </Link>
+        </Link> */}
 
         <Link to="/roster" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
           My Roster
         </Link>
 
-        <Link to="/battle" className="btn btn-ghost text-lg font-bold text-red-700 hover:bg-red-100 active:scale-95 transition-all">
+        <Link
+          to="/battle"
+          className="btn btn-ghost text-lg font-bold text-red-700 hover:bg-red-100 active:scale-95 transition-all"
+        >
           Battle
         </Link>
 
-        <Link to="/login" className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-amber-950 hover:bg-blue-500 hover:text-white hover:border-blue-600 transition-all duration-300 active:scale-95">
+        <Link
+          to="/login"
+          className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-amber-950 hover:bg-blue-500 hover:text-white hover:border-blue-600 transition-all duration-300 active:scale-95"
+        >
           Login
         </Link>
 

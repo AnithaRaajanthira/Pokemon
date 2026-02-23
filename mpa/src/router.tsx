@@ -3,6 +3,7 @@ import AppLayout from "./components/layout/AppLayout.tsx";
 import HomePage, { loader as HomePageLoader } from "./pages/HomePage.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import RosterPage, { rosterLoader } from "./pages/RosterPage";
+import DetailsPage from "./pages/DetailsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: HomePageLoader,
+      },
+      {
+        path: "/details/:id",
+        element: <DetailsPage />,
       },
       {
         path: "/roster",

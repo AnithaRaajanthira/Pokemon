@@ -1,12 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLoaderData, Link } from "react-router";
 import PokCards from "../components/ui/PokCards";
-import {
-  addToRoster,
-  readRoster,
-  removeFromRoster,
-  type RosterPokemon,
-} from "../types/rosterStorage";
+import { addToRoster, readRoster, removeFromRoster, type RosterPokemon } from "../types/rosterStorage";
 
 type PokemonsType = {
   name: string;
@@ -73,9 +68,7 @@ export default function HomePage() {
               <PokCards
                 name={result.name}
                 imageUrl={img}
-                rosterBtnLabel={
-                  inRoster ? "Remove from Roster" : "Add to Roster"
-                }
+                rosterBtnLabel={inRoster ? "Remove from Roster" : "Add to Roster"}
                 rosterBtnDisabled={!inRoster && rosterFull}
                 rosterBtnOnClick={() => {
                   setRosterError(null);
