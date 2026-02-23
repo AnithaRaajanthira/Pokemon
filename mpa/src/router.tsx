@@ -40,10 +40,7 @@ const router = createBrowserRouter([
       //   path: "/register",
       //   element: <Register />,
       // },
-      // {
-      //   path: "/details",
-      //   element: <DetailsPage />,
-      // },
+
       // {
       //   path: "/leaderboard",
       //   element: <LeaderboardPage />,

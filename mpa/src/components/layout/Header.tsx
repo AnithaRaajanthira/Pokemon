@@ -30,10 +30,6 @@ export default function Header(): JSX.Element {
       </div>
 
       <div className="navbar-end gap-2">
-        <Link to="/details" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
-          Details
-        </Link>
-
         <Link to="/roster" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
           My Roster
         </Link>
