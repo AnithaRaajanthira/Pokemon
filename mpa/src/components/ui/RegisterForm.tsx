@@ -5,7 +5,7 @@ export default function RegisterForm() {
     <Form method="post" className="flex items-center w-full">
       <fieldset className="fieldset bg-base-200 border-base-300 items-center rounded-box w-120 border p-6 mx-auto mt-10 mb-20">
         <h2 className="fieldset-legend text-xl justify-center font-semibold">Create an account</h2>
-        <p className="text-center m-2 mb-4 text-lg">Join EventHub to create and manage events</p>
+        <p className="text-center m-2 mb-4 text-lg">Join us to enjoy your freetime</p>
 
         <label className="label text-base font-medium">Profile Name</label>
         <input type="text" name="name" required className="input w-auto input-bordered text-base h-12" placeholder="Full Name" />
