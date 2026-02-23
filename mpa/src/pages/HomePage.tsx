@@ -12,7 +12,7 @@ type PokemonsType = {
 function getPokemonId(url: string): number | null {
   const idStr = url.split("/").filter(Boolean).pop();
   const id = Number(idStr);
-  return Number.isFinite(id) ? id : null;
+  return Number.isInteger(id) ? id : null;
 }
 
 //Load Pokemon list.
@@ -46,9 +46,7 @@ export default function HomePage() {
         setRosterIds(new Set(items.map((x) => x.pokemonId)));
       } catch (e) {
         if (cancelled) return;
-        setRosterError(
-          e instanceof Error ? e.message : "Failed to load roster",
-        );
+        setRosterError(e instanceof Error ? e.message : "Failed to load roster");
       } finally {
         if (!cancelled) setLoadingRoster(false);
       }
@@ -70,9 +68,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-cyan-100">
       <div className="p-4 flex items-center justify-between">
-        <div className="font-semibold  text-gray-800">
-          Roster: {loadingRoster ? "…" : rosterCount}/6
-        </div>
+        <div className="font-semibold  text-gray-800">Roster: {loadingRoster ? "…" : rosterCount}/6</div>
       </div>
 
       {rosterError && (
@@ -96,9 +92,7 @@ export default function HomePage() {
               <PokCards
                 name={result.name}
                 imageUrl={img}
-                rosterBtnLabel={
-                  inRoster ? "Remove from Roster" : "Add to Roster"
-                }
+                rosterBtnLabel={inRoster ? "Remove from Roster" : "Add to Roster"}
                 rosterBtnDisabled={loadingRoster || (!inRoster && rosterFull)}
                 rosterBtnOnClick={async () => {
                   setRosterError(null);
@@ -120,9 +114,7 @@ export default function HomePage() {
                       });
                     }
                   } catch (e) {
-                    setRosterError(
-                      e instanceof Error ? e.message : "Roster update failed",
-                    );
+                    setRosterError(e instanceof Error ? e.message : "Roster update failed");
                   }
                 }}
               />
