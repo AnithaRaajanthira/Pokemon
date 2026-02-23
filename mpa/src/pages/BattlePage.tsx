@@ -37,6 +37,8 @@ export default function BattlePage() {
     }
   }
 
+  async function attack() {}
+
   return (
     <>
       <div
@@ -62,9 +64,12 @@ export default function BattlePage() {
           <section className="flex flex-row pr-150 pt-20 text-white items-center justify-around gap-10 h-50 w-200">
             <div className="text-center text-2xl">Selected</div>
           </section>
-          <div className="pt-5">
-            <button onClick={generateComputerPokemon} className="btn btn-primary">
+          <div className="flex pt-5 gap-5">
+            <button onClick={generateComputerPokemon} className="btn bg-white">
               Start Battle
+            </button>
+            <button onClick={attack} className="btn bg-red-500 text-white">
+              Attack
             </button>
           </div>
         </div>
