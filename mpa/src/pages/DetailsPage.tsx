@@ -50,6 +50,7 @@ export default function DetailsPage() {
           Back to Home
         </Link>
       </div>
+
       <div className="flex flex-wrap justify-center items-center">
         <div className="card bg-black shadow-sm p-5">
           <div className="text-center text-3xl text-yellow-400">{pokemon.name}</div>

@@ -4,22 +4,13 @@ import { Link } from "react-router";
 type PokCardsProps = {
   name: string;
   imageUrl: string;
-
   ViewDetailsBtn?: React.MouseEventHandler<HTMLButtonElement>;
-
   rosterBtnLabel?: string;
   rosterBtnDisabled?: boolean;
   rosterBtnOnClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export default function PokCards({
-  name,
-  imageUrl,
-  ViewDetailsBtn,
-  rosterBtnLabel,
-  rosterBtnDisabled,
-  rosterBtnOnClick,
-}: PokCardsProps) {
+export default function PokCards({ name, imageUrl, ViewDetailsBtn, rosterBtnLabel, rosterBtnDisabled, rosterBtnOnClick }: PokCardsProps) {
   return (
     <div className="card bg-black w-96 shadow-sm">
       <figure className="px-10 pt-10">
