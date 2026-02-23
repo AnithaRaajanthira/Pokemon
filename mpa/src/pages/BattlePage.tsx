@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pokemon } from "../types/details";
+import { Pokemon } from "../types/details.js";
 
 const imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
@@ -37,7 +37,11 @@ export default function BattlePage() {
     }
   }
 
-  async function attack() {}
+  // attack button function
+  async function attack() {
+    // add function for calculate the lose and HP
+    // Attack - Deffense = lose, HP = HP - lose
+  }
 
   return (
     <>

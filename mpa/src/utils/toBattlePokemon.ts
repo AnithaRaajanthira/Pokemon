@@ -1,5 +1,5 @@
-import { BattlePokemon, BattleStats } from "../types/battle";
-import { Pokemon } from "../types/details";
+import { BattlePokemon, BattleStats } from "../types/battle.js";
+import { Pokemon } from "../types/details.js";
 
 function toBattlePokemon(p: Pokemon, level = 50): BattlePokemon {
   const get = (statName: string) => p.stats.find((s) => s.stat.name === statName)?.base_stat ?? 1;

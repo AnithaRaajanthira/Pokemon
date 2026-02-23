@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "react-router";
 import type { LoaderFunctionArgs } from "react-router";
-import type { Pokemon } from "../types/details";
+import type { Pokemon } from "../types/details.js";
 
 const imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
