@@ -21,7 +21,7 @@ import express from "express";
 import cors from "cors";
 import { router } from "#routes";
 import { errorHandler } from "#middlewares";
-import { connectDb } from "#db";
+import "#db";
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.use(errorHandler);
 
 const port = Number(process.env.PORT ?? 3001);
 
-await connectDb();
+// await connectDb();
 
 app.listen(port, () => {
   console.log(`API running on http://localhost:${port}`);
