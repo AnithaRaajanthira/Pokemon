@@ -1,9 +1,41 @@
-import { Link, useLoaderData } from "react-router";
-import type { LoaderFunctionArgs } from "react-router";
-import type { Pokemon } from "../types/details";
+import { useState } from "react";
+import { Pokemon } from "../types/details";
+
+const imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
 export default function BattlePage() {
-  const pokemon = useLoaderData() as Pokemon;
+  // get the random Pokemon for battle
+  function getRandomPokemonId(): number {
+    const maxPokemon = 1025;
+    return Math.floor(Math.random() * maxPokemon) + 1;
+  }
+  async function fetchRandomPokemon(): Promise<Pokemon> {
+    const randomId = getRandomPokemonId();
+
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}/`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch Pokémon");
+    }
+
+    const data: Pokemon = await res.json();
+    return data;
+  }
+
+  const [computerPokemon, setComputerPokemon] = useState<Pokemon | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function generateComputerPokemon() {
+    try {
+      setLoading(true);
+      const pokemon = await fetchRandomPokemon();
+      setComputerPokemon(pokemon);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -15,12 +47,37 @@ export default function BattlePage() {
         }}
       >
         <div className="flex flex-col items-center justify-center p-10">
-          <section className="text-yellow-300 font-bold text-6xl text-center pb-30">POKEMON BATTLE</section>
-          <section className="flex flex-row p-5 text-white items-center justify-around gap-10">
-            <div>Selcted</div>
-            <div>Computer</div>
+          <section className="text-yellow-300 font-bold text-6xl text-center pt-2 pb-40 h-20">POKEMON BATTLE</section>
+          <section className="flex flex-row pl-110 pt-20 text-white items-center justify-around gap-10 h-50 w-200">
+            <div>
+              {loading && <p className="text-center text-xl">Computer is choosing...</p>}
+              {computerPokemon && (
+                <div>
+                  {/* <h2 className="text-center text-2xl">{computerPokemon.name}</h2> */}
+                  <img src={`${imageUrl}${computerPokemon.id}.png`} alt={computerPokemon.name} />
+                </div>
+              )}
+            </div>
           </section>
-          <section className="flex flex-row p-5 text-white items-center justify-around gap-10">your 6 pokemons</section>
+          <section className="flex flex-row pr-150 pt-20 text-white items-center justify-around gap-10 h-50 w-200">
+            <div className="text-center text-2xl">Selected</div>
+          </section>
+          <div className="pt-5">
+            <button onClick={generateComputerPokemon} className="btn btn-primary">
+              Start Battle
+            </button>
+          </div>
+        </div>
+
+        <div className="text-left">
+          <section className="flex flex-row p-5 text-white justify-around gap-10">
+            <div>pokemon1</div>
+            <div>pokemon2</div>
+            <div>pokemon3</div>
+            <div>pokemon4</div>
+            <div>pokemon5</div>
+            <div>pokemon6</div>
+          </section>
         </div>
       </div>
     </>
