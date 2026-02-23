@@ -3,9 +3,10 @@ import AppLayout from "./components/layout/AppLayout.tsx";
 import HomePage, { loader as HomePageLoader } from "./pages/HomePage.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import RosterPage, { rosterLoader } from "./pages/RosterPage";
-import DetailsPage from "./pages/DetailsPage.tsx";
+import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage.tsx";
 import LoginPage, { action as LoginAction } from "./pages/LoginPage.tsx";
 import RegisterPage, { action as registerAction } from "./pages/RegisterPage.tsx";
+import BattlePage from "./pages/BattlePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <DetailsPage />,
+        loader: detailsLoader,
+      },
+      {
+        path: "/battle",
+        element: <BattlePage />,
       },
       {
         path: "/roster",
