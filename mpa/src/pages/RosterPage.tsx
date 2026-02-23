@@ -3,11 +3,13 @@ import { useState } from "react";
 import PokCards from "../components/ui/PokCards";
 import { getRoster, removeRoster, type RosterItem } from "../lib/rosterApi"; //use API instead of Localstorage now
 
+//Load roster from Backend before page is shown.
 export async function rosterLoader() {
   const { items } = await getRoster(); // GET /api/roster
   return items;
 }
 
+// Get the Roster from the loader and allow it to be modified or removed.
 export default function RosterPage() {
   const initial = useLoaderData<RosterItem[]>();
   const [items, setItems] = useState<RosterItem[]>(initial);
