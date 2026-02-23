@@ -32,7 +32,7 @@ export function readRoster(): RosterPokemon[] {
   }
 }
 
-function writeRoster(roster: RosterPokemon[]) {
+export function writeRoster(roster: RosterPokemon[]) {
   localStorage.setItem(KEY, JSON.stringify(roster.slice(0, MAX)));
 }
 
@@ -40,11 +40,7 @@ export function isInRoster(id: number): boolean {
   return readRoster().some((p) => p.id === id);
 }
 
-export function addToRoster(
-  pokemon: RosterPokemon,
-):
-  | { ok: true; roster: RosterPokemon[] }
-  | { ok: false; roster: RosterPokemon[]; error: string } {
+export function addToRoster(pokemon: RosterPokemon): { ok: true; roster: RosterPokemon[] } | { ok: false; roster: RosterPokemon[]; error: string } {
   const roster = readRoster();
 
   if (roster.some((p) => p.id === pokemon.id)) {

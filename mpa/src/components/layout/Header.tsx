@@ -33,10 +33,13 @@ export default function Header(): JSX.Element {
       </div>
 
       <div className="navbar-end gap-2">
+<<<<<<< HEAD
         {/* <Link to="/details" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
           Details
         </Link> */}
 
+=======
+>>>>>>> 24d90e01fb0e1aa0ec9eb0155847ddcdfa8aecb1
         <Link to="/roster" className="btn btn-ghost text-lg font-bold text-amber-950 hover:underline">
           My Roster
         </Link>

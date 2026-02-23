@@ -3,21 +3,6 @@ import { useLoaderData, Link } from "react-router";
 import PokCards from "../components/ui/PokCards";
 import { addToRoster, readRoster, removeFromRoster, type RosterPokemon } from "../types/rosterStorage";
 
-type detailsCardsProps = {
-  name: string;
-  imageUrl: string;
-  rosterBtnLabel?: string;
-  rosterBtnDisabled?: boolean;
-  rosterBtnOnClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
-
-type pokemonDetailsResponse = {
-  name: string;
-  weight: number;
-  height: number;
-  types: Object;
-};
-
 export async function loader(id) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   if (!res.ok) throw new Error("Cannot fetch data:");
