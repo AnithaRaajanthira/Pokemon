@@ -9,7 +9,7 @@ type PokemonsType = {
 };
 
 //Take ID of individual Pokemon of the Pokemon URL and return it.
-function getPokemonId(url: string): number | null {
+export function getPokemonId(url: string): number | null {
   const idStr = url.split("/").filter(Boolean).pop();
   const id = Number(idStr);
   return Number.isInteger(id) ? id : null;
@@ -90,6 +90,7 @@ export default function HomePage() {
           return (
             <div key={result.url}>
               <PokCards
+                id={id}
                 name={result.name}
                 imageUrl={img}
                 rosterBtnLabel={inRoster ? "Remove from Roster" : "Add to Roster"}

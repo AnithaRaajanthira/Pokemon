@@ -17,9 +17,7 @@ export default function RosterPage() {
   return (
     <div className="min-h-screen bg-cyan-100">
       <div className="p-4 flex items-center justify-between">
-        <div className="font-semibold  text-gray-800">
-          Your Roster ({items.length}/6)
-        </div>
+        <div className="font-semibold  text-gray-800">Your Roster ({items.length}/6)</div>
       </div>
 
       {items.length === 0 ? (
