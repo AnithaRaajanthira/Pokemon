@@ -34,7 +34,7 @@ export default function RosterPage() {
     localStorage.setItem("roster", JSON.stringify(items));
   }, [items]);
   return (
-    <div className="min-h-screen bg-cyan-100">
+    <div className="min-h-screen bg-mist-600">
       <div className="p-4 flex items-center justify-between">
         <div className="font-semibold text-gray-800">Your Roster: {items.length}/6</div>
       </div>

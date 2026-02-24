@@ -83,7 +83,7 @@ export default function DetailsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cyan-100">
+    <div className="min-h-screen bg-mist-600">
       <div className="p-4 flex items-center justify-between">
         <div className="font-semibold text-gray-800">Your Roster: {loadingRoster ? "…" : rosterIds.size}/6</div>
       </div>
@@ -95,7 +95,7 @@ export default function DetailsPage() {
       )}
 
       <div className="flex flex-wrap justify-center items-center pb-10">
-        <div className="card bg-black shadow-sm p-5">
+        <div className="card bg-mist-800 shadow-sm p-5">
           <div className="text-center text-3xl text-yellow-400 font-bold">{pokemon.name.toUpperCase()}</div>
 
           <figure>
