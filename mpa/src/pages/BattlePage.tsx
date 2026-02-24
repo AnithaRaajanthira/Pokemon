@@ -49,13 +49,16 @@ export default function BattlePage() {
   // const [score, setScore] = useState(null);
 
   async function startBattle() {
+    if (!selectedPokemon) {
+      alert("Select a Pokémon first!");
+      return;
+    }
     try {
       setLoading(true);
       setWinner(null);
       setLog(["Battle starting..."]);
 
-      // For MVP: random both sides so the page works now.
-      // Later, replace player random with "selected pokemon" from roster/details.
+      // Later, replace player with "selected pokemon" from roster/details.
       let computerId = getRandomPokemonId();
       const computerP = await fetchPokemonById(computerId);
       const playerBP = toBattlePokemon(selectedPokemon, 50);
@@ -175,7 +178,6 @@ export default function BattlePage() {
               {player && (
                 <img className="w-100 object-contain" src={`${artworkUrl}${player.id}.png`} alt={player.name} />
               )}
-              {!player && <div className="opacity-80">Waiting...</div>}
             </div>
 
             <div className="w-1/2 text-right bg-black/50 rounded-xl p-6">
