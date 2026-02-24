@@ -1,24 +1,40 @@
 import { Link, useLoaderData } from "react-router";
 import { useState } from "react";
 import PokCards from "../components/ui/PokCards";
-import { getRoster, removeRoster, type RosterItem } from "../lib/rosterApi"; //use API instead of Localstorage now
+import { getRoster, removeRoster, type RosterItem } from "../lib/rosterApi";
 
-//Load roster from Backend before page is shown.
-export async function rosterLoader() {
-  const { items } = await getRoster(); // GET /api/roster
-  return items;
+type RosterItemWithName = RosterItem & { name: string };
+
+async function fetchPokemonName(id: number): Promise<string> {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+  if (!res.ok) return `#${id}`;
+
+  const data = (await res.json()) as { name?: unknown };
+  return typeof data.name === "string" ? data.name : `#${id}`;
 }
 
-// Get the Roster from the loader and allow it to be modified or removed.
+export async function rosterLoader(): Promise<RosterItemWithName[]> {
+  const { items } = await getRoster();
+
+  const enriched = await Promise.all(
+    items.map(async (item) => {
+      const name = await fetchPokemonName(item.pokemonId);
+      return { ...item, name };
+    }),
+  );
+
+  return enriched;
+}
+
 export default function RosterPage() {
-  const initial = useLoaderData<RosterItem[]>();
-  const [items, setItems] = useState<RosterItem[]>(initial);
+  const initial = useLoaderData<RosterItemWithName[]>();
+  const [items, setItems] = useState<RosterItemWithName[]>(initial);
 
   return (
     <div className="min-h-screen bg-cyan-100">
       <div className="p-4 flex items-center justify-between">
-        <div className="font-semibold  text-gray-800">
-          Your Roster ({items.length}/6)
+        <div className="font-semibold text-gray-800">
+          Your Roster: {items.length}/6
         </div>
       </div>
 
@@ -34,7 +50,7 @@ export default function RosterPage() {
               <div key={id}>
                 <PokCards
                   id={id}
-                  name={`#${id}`}
+                  name={item.name}
                   imageUrl={img}
                   rosterBtnLabel="Remove from Roster"
                   rosterBtnOnClick={async () => {

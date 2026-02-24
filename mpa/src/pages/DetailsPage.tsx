@@ -91,12 +91,8 @@ export default function DetailsPage() {
   return (
     <div className="min-h-screen bg-cyan-100">
       <div className="p-4 flex items-center justify-between">
-        <Link to="/" className="btn btn-ghost">
-          Back to Home
-        </Link>
-
         <div className="font-semibold text-gray-800">
-          Roster: {loadingRoster ? "…" : rosterIds.size}/6
+          Your Roster: {loadingRoster ? "…" : rosterIds.size}/6
         </div>
       </div>
 
