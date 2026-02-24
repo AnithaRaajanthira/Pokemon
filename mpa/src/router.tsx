@@ -6,7 +6,7 @@ import RosterPage, { rosterLoader } from "./pages/RosterPage.js";
 import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage.js";
 import LoginPage, { action as LoginAction } from "./pages/LoginPage.js";
 import RegisterPage, { action as registerAction } from "./pages/RegisterPage.js";
-import BattlePage from "./pages/BattlePage_log.js";
+import BattlePage from "./pages/BattlePage.js";
 import LeaderboardPage from "./pages/LeaderboardPage.js";
 
 const router = createBrowserRouter([
