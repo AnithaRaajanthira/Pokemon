@@ -25,8 +25,7 @@ function calcDamage(attacker: BattlePokemon, defender: BattlePokemon): number {
   const base = attacker.stats.attack + levelFactor;
   const mitigated = Math.floor(base - defender.stats.defense / 3);
 
-  const random = 0.85 + Math.random() * 0.15; // 0.85 ~ 1.00
-  return Math.max(1, Math.floor(mitigated * random));
+  return Math.max(1, Math.floor(mitigated));
 }
 
 function hpPercent(p: BattlePokemon): number {
@@ -81,7 +80,7 @@ export default function BattlePage() {
       currentHp: Math.max(0, computer.currentHp - dmgToComputer),
     };
 
-    let nextLog = [`${player.name} hits ${computer.name} for ${dmgToComputer}!`];
+    let nextLog = [`${player.name.toUpperCase()} hits ${computer.name.toUpperCase()} for ${dmgToComputer}!`];
 
     if (nextComputer.currentHp === 0) {
       setComputer(nextComputer);
