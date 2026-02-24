@@ -34,7 +34,11 @@ export default function PokCards({
           </Link>
 
           {rosterBtnLabel && (
-            <button onClick={rosterBtnOnClick} disabled={rosterBtnDisabled} className="btn btn-secondary">
+            <button
+              onClick={rosterBtnOnClick}
+              disabled={rosterBtnDisabled}
+              className="btn btn-secondary"
+            >
               {rosterBtnLabel}
             </button>
           )}
