@@ -15,7 +15,6 @@ type RefreshTokenDTO = z.infer<typeof refreshTokenSchema>;
 
 type UserProfile = Omit<UserDTO, 'password'> & {
   _id: InstanceType<typeof Types.ObjectId>;
-  roles: string[];
   createdAt: Date;
   __v: number;
 };
@@ -31,7 +30,7 @@ type TokenResBody = SuccessResMessage & {
 type MeResBody = SuccessResMessage & { user: UserProfile };
 
 export const register: RequestHandler<{}, TokenResBody, RegisterDTO> = async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { email, password, name } = req.body;
   const userExists = await User.exists({ email });
   if (userExists) throw new Error('Email already registered', { cause: { status: 409 } });
 
@@ -40,8 +39,7 @@ export const register: RequestHandler<{}, TokenResBody, RegisterDTO> = async (re
   const user = await User.create({
     email,
     password: hashedPW,
-    firstName,
-    lastName
+    name
   } satisfies UserDTO);
   const [refreshToken, accessToken] = await createTokens(user);
 
