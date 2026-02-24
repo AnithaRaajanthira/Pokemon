@@ -1,7 +1,7 @@
 import { BattlePokemon, BattleStats } from "../types/battle";
 import { Pokemon } from "../types/details";
 
-function toBattlePokemon(p: Pokemon, level = 50): BattlePokemon {
+export function toBattlePokemon(p: Pokemon, level = 50): BattlePokemon {
   const get = (statName: string) => p.stats.find((s) => s.stat.name === statName)?.base_stat ?? 1;
 
   const stats: BattleStats = {

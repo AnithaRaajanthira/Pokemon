@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router";
-import AppLayout from "./components/layout/AppLayout.tsx";
-import HomePage, { loader as HomePageLoader } from "./pages/HomePage.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
+import AppLayout from "./components/layout/AppLayout";
+import HomePage, { loader as HomePageLoader } from "./pages/HomePage";
+import ErrorPage from "./pages/ErrorPage";
 import RosterPage, { rosterLoader } from "./pages/RosterPage";
-import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage.tsx";
-import LoginPage, { action as LoginAction } from "./pages/LoginPage.tsx";
-import RegisterPage, { action as registerAction } from "./pages/RegisterPage.tsx";
-import BattlePage from "./pages/BattlePage.tsx";
-import LeaderboardPage from "./pages/LeaderboardPage.tsx";
+import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
+import LoginPage, { action as LoginAction } from "./pages/LoginPage";
+import RegisterPage, { action as registerAction } from "./pages/RegisterPage";
+import BattlePage from "./pages/BattlePage";
+import LeaderboardPage from "./pages/LeaderboardPage";
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,6 @@
-import RegisterForm from "../components/ui/RegisterForm.tsx";
-import { redirect } from "react-router";
+import RegisterForm from "@/components/ui/RegisterForm";
 import type { ActionFunction } from "react-router";
+
 // Pure UI wrapper
 export default function RegisterPage() {
   return <RegisterForm />;
@@ -15,7 +15,12 @@ export const action: ActionFunction = async ({ request }) => {
   const rpassword = formData.get("rpassword");
 
   //for type safety-------------------------------------------------------------
-  if (typeof name !== "string" || typeof email !== "string" || typeof password !== "string" || typeof rpassword !== "string") {
+  if (
+    typeof name !== "string" ||
+    typeof email !== "string" ||
+    typeof password !== "string" ||
+    typeof rpassword !== "string"
+  ) {
     alert("Invalid form data");
     return null;
   }
