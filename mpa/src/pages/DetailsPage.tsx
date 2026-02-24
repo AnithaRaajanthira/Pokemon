@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import type { Pokemon } from "../types/details";
 import { addRoster, getRoster, removeRoster } from "../lib/rosterApi";
 
-const imageUrl =
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+const imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = Number(params.id);
@@ -25,10 +24,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function DetailsPage() {
   const pokemon = useLoaderData() as Pokemon;
-  const totalBaseStat = pokemon.stats.reduce(
-    (total, stat) => total + stat.base_stat,
-    0,
-  );
+  const totalBaseStat = pokemon.stats.reduce((total, stat) => total + stat.base_stat, 0);
 
   const [rosterIds, setRosterIds] = useState<Set<number>>(new Set());
   const [rosterError, setRosterError] = useState<string | null>(null);
@@ -48,9 +44,7 @@ export default function DetailsPage() {
         setRosterIds(new Set(items.map((x) => x.pokemonId)));
       } catch (e) {
         if (cancelled) return;
-        setRosterError(
-          e instanceof Error ? e.message : "Failed to load roster",
-        );
+        setRosterError(e instanceof Error ? e.message : "Failed to load roster");
       } finally {
         if (!cancelled) setLoadingRoster(false);
       }
@@ -91,9 +85,7 @@ export default function DetailsPage() {
   return (
     <div className="min-h-screen bg-mist-600">
       <div className="p-4 flex items-center justify-between">
-        <div className="font-semibold text-gray-800">
-          Your Roster: {loadingRoster ? "…" : rosterIds.size}/6
-        </div>
+        <div className="font-semibold text-gray-800">Your Roster: {loadingRoster ? "…" : rosterIds.size}/6</div>
       </div>
 
       {rosterError && (
@@ -104,16 +96,10 @@ export default function DetailsPage() {
 
       <div className="flex flex-wrap justify-center items-center pb-10">
         <div className="card bg-mist-800 shadow-sm p-5">
-          <div className="text-center text-3xl text-yellow-400 font-bold">
-            {pokemon.name.toUpperCase()}
-          </div>
+          <div className="text-center text-3xl text-yellow-400 font-bold">{pokemon.name.toUpperCase()}</div>
 
           <figure>
-            <img
-              src={`${imageUrl}${pokemon.id}.png`}
-              alt={pokemon.name}
-              className="w-72 object-contain mx-auto"
-            />
+            <img src={`${imageUrl}${pokemon.id}.png`} alt={pokemon.name} className="w-72 object-contain mx-auto" />
           </figure>
 
           <div className="flex flex-col text-white text-center justify-center items-center">
@@ -122,19 +108,14 @@ export default function DetailsPage() {
 
             <div className="flex gap-2 mt-2">
               {pokemon.types.map((t) => (
-                <span
-                  key={t.type.name}
-                  className="px-3 py-1 bg-blue-500 rounded-full text-sm capitalize"
-                >
+                <span key={t.type.name} className="px-3 py-1 bg-blue-500 rounded-full text-sm capitalize">
                   {t.type.name}
                 </span>
               ))}
             </div>
 
             <div className="mt-2">
-              <h2 className="text-xl font-bold mb-2 text-yellow-300">
-                Abilities
-              </h2>
+              <h2 className="text-xl font-bold mb-2 text-yellow-300">Abilities</h2>
               {pokemon.abilities.map((a) => (
                 <p key={a.ability.name} className="capitalize">
                   {a.ability.name}
@@ -155,7 +136,7 @@ export default function DetailsPage() {
                   <div className="w-full bg-gray-700 h-2 rounded">
                     <div
                       className="bg-green-400 h-2 rounded"
-                      style={{ width: `${Math.min(s.base_stat, 150)}%` }}
+                      style={{ width: `${Math.min(100, Math.round((s.base_stat / 180) * 100))}%` }}
                     />
                   </div>
                 </div>

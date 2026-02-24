@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PokCards from "../components/ui/PokCards";
 import { getRoster, removeRoster, type RosterItem } from "../lib/rosterApi";
 
@@ -30,12 +30,13 @@ export default function RosterPage() {
   const initial = useLoaderData<RosterItemWithName[]>();
   const [items, setItems] = useState<RosterItemWithName[]>(initial);
 
+  useEffect(() => {
+    localStorage.setItem("roster", JSON.stringify(items));
+  }, [items]);
   return (
     <div className="min-h-screen bg-mist-600">
       <div className="p-4 flex items-center justify-between">
-        <div className="font-semibold text-gray-800">
-          Your Roster: {items.length}/6
-        </div>
+        <div className="font-semibold text-gray-800">Your Roster: {items.length}/6</div>
       </div>
 
       {items.length === 0 ? (

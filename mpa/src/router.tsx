@@ -6,7 +6,7 @@ import RosterPage, { rosterLoader } from "./pages/RosterPage";
 import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
 import LoginPage, { action as LoginAction } from "./pages/LoginPage";
 import RegisterPage, { action as registerAction } from "./pages/RegisterPage";
-import BattlePage from "./pages/BattlePage";
+import BattlePage, { loader as battleLoader } from "./pages/BattlePage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 
 const router = createBrowserRouter([
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/battle",
         element: <BattlePage />,
+        loader: battleLoader,
       },
       {
         path: "/roster",

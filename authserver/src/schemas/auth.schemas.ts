@@ -20,8 +20,7 @@ export const registerSchema = z
           error: 'Password must include at least one special character'
         }),
       confirmPassword: z.string(),
-      firstName: z.string().min(1).max(50).optional(),
-      lastName: z.string().min(1).max(50).optional()
+      name: z.string().min(1).max(50).optional()
     },
     { error: 'Please provide a valid email and a secure password.' }
   )
