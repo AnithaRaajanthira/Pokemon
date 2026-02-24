@@ -17,7 +17,9 @@ export default function RosterPage() {
   return (
     <div className="min-h-screen bg-cyan-100">
       <div className="p-4 flex items-center justify-between">
-        <div className="font-semibold  text-gray-800">Your Roster ({items.length}/6)</div>
+        <div className="font-semibold  text-gray-800">
+          Your Roster ({items.length}/6)
+        </div>
       </div>
 
       {items.length === 0 ? (
@@ -31,11 +33,12 @@ export default function RosterPage() {
             return (
               <div key={id}>
                 <PokCards
+                  id={id}
                   name={`#${id}`}
                   imageUrl={img}
                   rosterBtnLabel="Remove from Roster"
                   rosterBtnOnClick={async () => {
-                    await removeRoster(id); // DELETE /api/roster/:id
+                    await removeRoster(id);
                     setItems((prev) => prev.filter((x) => x.pokemonId !== id));
                   }}
                 />
