@@ -13,11 +13,11 @@ export default function Header(): JSX.Element {
   //   }
   // };
   return (
-    <div className="navbar bg-stone-800 shadow-md px-4">
+    <div className="navbar bg-mist-900 shadow-md px-4">
       <div className="navbar-start gap-6">
         <Link
           to="/"
-          className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
+          className="btn btn-ghost border-2 rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
         >
           Homepage
         </Link>
@@ -40,28 +40,28 @@ export default function Header(): JSX.Element {
       <div className="navbar-end gap-2">
         <Link
           to="/roster"
-          className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
+          className="btn btn-ghost border-2  rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
         >
           My Roster
         </Link>
 
         <Link
           to="/battle"
-          className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-red-700 hover:bg-red-800 hover:text-white transition-all duration-300 active:scale-95"
+          className="btn btn-ghost border-2  rounded-xl text-lg font-bold text-red-700 hover:bg-red-800 hover:text-white transition-all duration-300 active:scale-95"
         >
           Battle
         </Link>
 
         <Link
           to="/login"
-          className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
+          className="btn btn-ghost border-2  rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
         >
           Login
         </Link>
 
         <Link
           to="/register"
-          className="btn btn-ghost border-2 border-amber-950/20 rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
+          className="btn btn-ghost border-2  rounded-xl text-lg font-bold text-grey-200 hover:bg-blue-600 hover:text-white transition-all duration-300 active:scale-95"
         >
           Register
         </Link>

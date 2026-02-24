@@ -62,7 +62,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-cyan-100">
+    <div className="min-h-screen bg-mist-600">
       {/* <div className="p-4 flex items-center justify-between">
         <div className="font-semibold text-gray-800">
           Roster: {loadingRoster ? "…" : rosterCount}/6
@@ -75,7 +75,7 @@ export default function HomePage() {
         </div>
       )} */}
 
-      <div className="p-6 grid grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
         {results.map((result) => {
           const id = getPokemonId(result.url);
           if (!id) return null;
