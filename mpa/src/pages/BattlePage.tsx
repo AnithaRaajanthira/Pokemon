@@ -92,7 +92,7 @@ export default function BattlePage() {
     if (nextComputer.currentHp === 0) {
       setComputer(nextComputer);
       setWinner("player");
-      setLog((prev) => [...prev, ...nextLog, `${computer.name} fainted. You win!`]);
+      setLog((prev) => [...prev, ...nextLog, `${computer.name.toUpperCase()} fainted. You win!`]);
       return;
     }
 
@@ -109,7 +109,7 @@ export default function BattlePage() {
       setPlayer(nextPlayer);
       setComputer(nextComputer);
       setWinner("computer");
-      setLog((prev) => [...prev, ...nextLog, `${player.name} fainted. Computer wins.`]);
+      setLog((prev) => [...prev, ...nextLog, `${player.name.toUpperCase()} fainted. Computer wins.`]);
       return;
     }
 
