@@ -1,7 +1,4 @@
 const authServiceURL = import.meta.env.VITE_APP_AUTH_SERVER_URL;
-if (!authServiceURL) {
-  throw new Error("Missing VITE_APP_AUTH_SERVER_URL in .env");
-}
 const originalFetch = window.fetch;
 
 if (!authServiceURL) {
