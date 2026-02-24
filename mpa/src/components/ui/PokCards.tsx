@@ -21,16 +21,18 @@ export default function PokCards({
   rosterBtnOnClick,
 }: PokCardsProps) {
   return (
-    <div className="card bg-black w-96 shadow-sm">
+    <div className="card bg-mist-800 w-75 shadow-sm">
       <figure className="px-10 pt-10">
         <img src={imageUrl} alt={name} className="rounded-xl" />
       </figure>
 
       <div className="card-body items-center text-center">
         <h2 className="card-title text-white">{name}</h2>
-        <div className="card-actions gap-2">
+        <div className="card-actions gap-2 justify-center">
           <Link to={`/details/${id}`}>
-            <button className="btn btn-primary">View Details</button>
+            <button className="btn btn-primary w-41 bg-blue-600">
+              View Details
+            </button>
           </Link>
 
           {rosterBtnLabel && (
