@@ -4,8 +4,8 @@ import HomePage, { loader as HomePageLoader } from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import RosterPage, { rosterLoader } from "./pages/RosterPage";
 import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
-import LoginPage, { action as LoginAction } from "./pages/LoginPage";
-import RegisterPage, { action as registerAction } from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import BattlePage, { loader as battleLoader } from "./pages/BattlePage";
 
 const router = createBrowserRouter([
@@ -36,12 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/Login",
         element: <LoginPage />,
-        action: LoginAction,
       },
       {
         path: "/register",
         element: <RegisterPage />,
-        action: registerAction,
       },
     ],
   },

@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { requireAuth } from "#middlewares";
+import { authenticate } from "#middlewares";
 import { addRosterItem, getRoster, removeRosterItem } from "#controllers";
 
 export const rosterRouter = Router();
 
-rosterRouter.use(requireAuth);
+rosterRouter.use(authenticate);
 
 rosterRouter.get("/", getRoster);
 rosterRouter.post("/", addRosterItem);

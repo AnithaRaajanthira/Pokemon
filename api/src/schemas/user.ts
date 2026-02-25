@@ -11,4 +11,7 @@ const userSchema = z.strictObject({
   ...userInputSchema.shape,
   ...dbEntrySchema.shape,
 });
-export { userInputSchema, userSchema };
+
+const logInSchema = userSchema.omit({ email: true });
+
+export { userInputSchema, userSchema, logInSchema };

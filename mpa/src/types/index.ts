@@ -7,23 +7,20 @@ declare global {
     createdAt: string;
     __v: number;
     email: string;
-    firstName: string;
-    lastName: string;
-    roles: string[];
+    name: string;
   };
-  type LoginInput = { email: string; password: string };
+  type LoginInput = { name: string; password: string };
 
   type AuthContextType = {
     signedIn: boolean;
     user: User | null;
-    handleSignIn: ({ email, password }: LoginInput) => Promise<void>;
+    handleSignIn: ({ name, password }: LoginInput) => Promise<void>;
     handleSignOut: () => Promise<void>;
     handleRegister: (formData: RegisterFormState) => Promise<void>;
   };
 
   type RegisterFormState = {
-    firstName: string;
-    lastName: string;
+    name: string;
     email: string;
     password: string;
     confirmPassword: string;
