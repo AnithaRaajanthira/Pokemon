@@ -7,7 +7,7 @@ import { errorHandler, notFoundHandler } from '#middleware';
 import { CLIENT_BASE_URL } from '#config';
 
 const app = express();
-const port = process.env.PORT || '3001';
+const port = process.env.PORT || '4001';
 
 app.use(
   cors({
