@@ -25,7 +25,6 @@ app.use("/*splat", (_req, res) => {
 
 // Error handler am Ende
 app.use(errorHandler);
-// await connectDb();
 
 app.listen(port, () => {
   console.log(`API running on http://localhost:${port}`);

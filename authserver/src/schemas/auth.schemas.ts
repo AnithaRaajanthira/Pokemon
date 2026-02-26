@@ -1,15 +1,18 @@
 import { z } from 'zod/v4';
 
 const emailError = 'Please provide a valid email address.';
-const emailSchema = z.string({ error: emailError }).trim().email({ error: emailError });
+const emailSchema = z.email({ error: emailError }).trim();
+
+const nameError = 'Please provide a valid profile name';
+const nameSchema = z.string({ error: nameError }).trim().min(2, { error: nameError });
 
 const basePasswordSchema = z
   .string({ error: 'Password must be a string' })
-  .min(12, { error: 'Password must be at least 12 characters.' })
+  .min(6, { error: 'Password must be at least 6 characters.' })
   .max(512, { error: 'The length of this Password is excessive.' });
 
 export const registerSchema = z
-  .object(
+  .strictObject(
     {
       email: emailSchema,
       password: basePasswordSchema
@@ -20,15 +23,15 @@ export const registerSchema = z
           error: 'Password must include at least one special character'
         }),
       confirmPassword: z.string(),
-      name: z.string().min(1).max(50).optional()
+      name: nameSchema
     },
     { error: 'Please provide a valid email and a secure password.' }
   )
-  .strict()
+
   .refine(data => data.password === data.confirmPassword, { error: "Passwords don't match" });
 
 export const loginSchema = z.object({
-  email: emailSchema,
+  name: nameSchema,
   password: basePasswordSchema
 });
 

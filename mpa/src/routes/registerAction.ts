@@ -10,7 +10,7 @@ export async function registerAction({ request }: { request: Request }) {
     rpassword: String(formData.get("rpassword") || ""),
   };
 
-  const res = await fetch(`${import.meta.env.VITE_AUTH_BASE_URL}/auth/register`, {
+  const res = await fetch(`${import.meta.env.VITE_APP_AUTH_SERVER_URL}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include", // IMPORTANT if refresh token is cookie

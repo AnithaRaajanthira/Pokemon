@@ -1,4 +1,4 @@
-const authServiceURL = import.meta.env.VITE_APP_AUTH_SERVER_URL;
+import { authServiceURL } from "@/utils";
 
 type SuccessRes = { message: string };
 type TokenRes = SuccessRes & { accessToken: string; refreshToken: string };

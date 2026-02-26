@@ -1,37 +1,29 @@
 import LoginForm from "../components/ui/LoginForm";
-import { redirect } from "react-router";
-import type { ActionFunction } from "react-router";
 import type { LoginProps } from "../types";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
-// Pure UI wrapper
 export default function LoginPage({ error }: LoginProps) {
-  return <LoginForm error={error} />;
-}
+  const { handleSignIn } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState(error || "");
 
-// Data-router declarative action
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const email = formData.get("name");
-  const password = formData.get("password");
+  const onSubmit = async (data: { name: string; password: string }) => {
+    try {
+      setLoading(true);
+      setFormError("");
 
-  try {
-    // Call the same login logic as your AuthContext
-    const res = await fetch("http://localhost:3001/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, password }),
-    });
+      await handleSignIn(data);
 
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.message || "Invalid email or password");
+      navigate("/");
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : "Login failed");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    const data = await res.json();
-    localStorage.setItem("token", data.token); // AuthContext will pick it up on mount
-    return redirect("/?auth=success"); // declarative redirect to fix reload issues
-  } catch (err: any) {
-    alert(err.message);
-    return null; // stay on the form
-  }
-};
+  return <LoginForm error={formError} loading={loading} onSubmit={onSubmit} />;
+}

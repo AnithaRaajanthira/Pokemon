@@ -1,8 +1,9 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { AuthContext } from ".";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { login, me, logout, register } from "@/data";
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [signedIn, setSignedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [checkSession, setCheckSession] = useState(true);
@@ -23,8 +24,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (checkSession) getUser();
   }, [checkSession]);
 
-  const handleSignIn = async ({ email, password }: LoginInput) => {
-    const { accessToken, refreshToken } = await login({ email, password });
+  const handleSignIn = async ({ name, password }: LoginInput) => {
+    const { accessToken, refreshToken } = await login({ name, password });
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
     // setSignedIn(true);
@@ -47,15 +48,26 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setCheckSession(true);
   };
 
-  const value: AuthContextType = {
-    signedIn,
-    user,
-    handleSignIn,
-    handleSignOut,
-    handleRegister,
-  };
-
-  return <AuthContext value={value}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider
+      value={{
+        signedIn,
+        user,
+        handleSignIn,
+        handleSignOut,
+        handleRegister,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-export default AuthProvider;
+export function useAuth(): AuthContextType {
+  //--- specify return type
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+}

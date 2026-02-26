@@ -33,6 +33,11 @@ export const register: RequestHandler<{}, TokenResBody, RegisterDTO> = async (re
   const { email, password, name } = req.body;
   const userExists = await User.exists({ email });
   if (userExists) throw new Error('Email already registered', { cause: { status: 409 } });
+  const nameExists = await User.exists({ name });
+  if (nameExists)
+    throw new Error('Name is already resgitered,please choose an another name', {
+      cause: { status: 409 }
+    });
 
   const salt = await bcrypt.genSalt(SALT_ROUNDS);
   const hashedPW = await bcrypt.hash(password, salt);
@@ -47,8 +52,8 @@ export const register: RequestHandler<{}, TokenResBody, RegisterDTO> = async (re
 };
 
 export const login: RequestHandler<{}, TokenResBody, LoginDTO> = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email }).lean();
+  const { name, password } = req.body;
+  const user = await User.findOne({ name }).lean();
   if (!user) throw new Error('Incorrect credentials', { cause: { status: 401 } });
 
   const match = await bcrypt.compare(password, user.password);

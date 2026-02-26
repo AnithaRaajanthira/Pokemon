@@ -5,14 +5,14 @@ import { ACCESS_TOKEN_TTL, ACCESS_JWT_SECRET } from '#config';
 import { RefreshToken } from '#models';
 
 type UserData = {
-  roles: string[];
+  name: string;
   _id: Types.ObjectId;
 };
 
 const createTokens = async (
   userData: UserData
 ): Promise<[refreshToken: string, accessToken: string]> => {
-  const payload = { roles: userData.roles };
+  const payload = { roles: userData.name };
   const secret = ACCESS_JWT_SECRET;
   const tokenOptions = {
     expiresIn: ACCESS_TOKEN_TTL,
